@@ -167,6 +167,8 @@
     <None Include="default.vert" />
     <None Include="Fragments\Orange.frag" />
     <None Include="Fragments\Yellow.frag" />
+    <None Include="GLSL\exercise3_2.frag" />
+    <None Include="GLSL\exercise3_2.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

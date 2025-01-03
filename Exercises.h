@@ -11,6 +11,8 @@
 
 class Exercises
 {
+public:
+	~Exercises() = default;
 private:
 	const GLint WIDTH = 800, HEIGHT = 600;
 	GLFWwindow* window;
@@ -21,4 +23,7 @@ public:
 	void helloTriangle2_3(); // Add more Triangles
 	void helloTriangle2_4(); // Add more Triangles using two different VAOs and VBOs
 	void helloTriangle2_5(); // second program uses dfifferent fragment shaders, one is yellow and one is orange
+
+	void shaderUniforms3_1(); // update uniform color in fragment shader
+	void shaderInterpolation3_2(); // Interpolation
 };

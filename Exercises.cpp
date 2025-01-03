@@ -27,6 +27,187 @@ void Exercises::processInput(GLFWwindow* window)
 	else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 }
+void Exercises::shaderInterpolation3_2()
+{
+	initGLFW();
+	// Create a GLFWwindow object that we can use for GLFW's functions
+	window = glfwCreateWindow(WIDTH, HEIGHT, "Open Glfw and Glad", nullptr, nullptr);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create GLFW window\n";
+		glfwTerminate();
+		return;
+	}
+	// Make the context of our window the current active context
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1); // Synchronizes the Frame Rate with the Monitor's Refresh Rate:
+	//Load GLAD so it configures OpenGL
+	//gladLoadGL(); redundant
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cerr << "Failed to initialize GLAD\n";
+		glfwTerminate();
+		return;
+	}
+	// Define the viewport dimensions
+	glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Shader 
+	Shader shaderProgram("GLSL/exercise3_2.vert", "GLSL/exercise3_2.frag");
+
+	GLfloat vertices[] =
+	{							/// colors
+		// first triangle
+		-0.9f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, // left 
+		-0.0f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		-0.45f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f,// top 
+		// second triangle
+		 0.0f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,// left
+		 0.9f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		 0.45f, 0.5f, 0.0f,   0.0f, 0.0f, 1.0f// top 
+	};
+	// Create and bind Vertex Array Object (VAO)
+	VAO vao1;
+	vao1.Bind();
+
+	// Create and bind Vertex Buffer Object (VBO)
+	VBO vbo1(vertices, sizeof(vertices));
+	/*
+		Vertex 1				Vertex 2				Vertex 3
+		X  Y  Z  R  G  B 	 X  Y  Z  R  G  B       X  Y  Z  R  G  B
+		0  4  8  12 16 20    24 28 32 36 40 44      48 52 56 60 64 68
+Pos:    | Stride: 24 -------->|		  |
+	- Offset: 0	 |					  |
+Color            |:---- Stride: 24 --->
+	- Offset: 12-|
+	0 -> 12 or from 0 -> 12
+	*/
+	// Configure vertex attributes
+	// the color size is 3 floats
+	// 6 * sizeof(GLfloat) is the stride ==> 6 * 4 = 24 bytes
+	// the position vertex arrtibute is first so we declare an offset of 0 => (void*)0
+	vao1.LinkAttrib(vbo1, 0, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)0); // position and it can connected to the vertex shader exercise3_2.vert
+	// the color vertex arrtibute is second so we declare an offset of 3 * sizeof(GLfloat) => (void*)(3 * sizeof(GLfloat)) => 3 * 4 = 12 bytes
+	vao1.LinkAttrib(vbo1, 1, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat))); // color and it can connected to the vertex shader exercise3_2.vert
+	// Unbind All Buffers
+	vao1.Unbind();
+	vbo1.Unbind();
+
+	// Render loop
+	while (!glfwWindowShouldClose(window))
+	{
+		// Process input
+		processInput(window);
+
+		// Clear the screen
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// activate the shader
+		shaderProgram.Activate();
+		vao1.Bind();
+		// Draw the triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		// Swap buffers and poll events
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	vao1.Delete();
+	vbo1.Delete();
+	shaderProgram.Delete();
+	glfwTerminate();
+
+}
+void Exercises::shaderUniforms3_1()
+{
+	initGLFW();
+	// Create a GLFWwindow object that we can use for GLFW's functions
+	window = glfwCreateWindow(WIDTH, HEIGHT, "Open Glfw and Glad", nullptr, nullptr);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create GLFW window\n";
+		glfwTerminate();
+		return;
+	}
+	// Make the context of our window the current active context
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1); // Synchronizes the Frame Rate with the Monitor's Refresh Rate:
+	//Load GLAD so it configures OpenGL
+	//gladLoadGL(); redundant
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cerr << "Failed to initialize GLAD\n";
+		glfwTerminate();
+		return;
+	}
+	// Define the viewport dimensions
+	glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Shader 
+	Shader shaderProgram("default.vert", "default.frag");
+
+	GLfloat vertices[] =
+	{
+		// first triangle
+		-0.9f, -0.5f, 0.0f,  // left 
+		-0.0f, -0.5f, 0.0f,  // right
+		-0.45f, 0.5f, 0.0f,  // top 
+		// second triangle
+		 0.0f, -0.5f, 0.0f,  // left
+		 0.9f, -0.5f, 0.0f,  // right
+		 0.45f, 0.5f, 0.0f   // top 
+	};
+	// Create and bind Vertex Array Object (VAO)
+	VAO vao1;
+	vao1.Bind();
+
+	// Create and bind Vertex Buffer Object (VBO)
+	VBO vbo1(vertices, sizeof(vertices));
+
+
+	// Configure vertex attributes
+	vao1.LinkAttrib(vbo1, 0);
+
+	// Unbind All Buffers
+	vao1.Unbind();
+	vbo1.Unbind();
+
+	// Render loop
+	while (!glfwWindowShouldClose(window))
+	{
+		// Process input
+		processInput(window);
+
+		// Clear the screen
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// activate the shader
+		shaderProgram.Activate();
+		GLfloat timeVal = glfwGetTime(); // will get the time in seconds
+		// GLfloat greenVal = static_cast<GLfloat>((sin(timeVal) / 2) + 0.5); // will change the green value from 0 to 1
+		GLfloat greenVal = (sin(timeVal) / 2) + 0.5; // will change the green value from 0 to 1
+		GLint vertexColorLocation = glGetUniformLocation(shaderProgram.ID, "ourColorDawKuno"); // will find location of the uniform named ourColorDawKuno in the default.frag
+		glUniform4f(vertexColorLocation, 0.0f, greenVal, 0.0f, 1.0f); // set the value of the uniform ourColorDawKuno to a green color
+
+		vao1.Bind();
+		// Draw the triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		// Swap buffers and poll events
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	vao1.Delete();
+	vbo1.Delete();
+	shaderProgram.Delete();
+	glfwTerminate();
+}
 void Exercises::helloTriangle2_5()
 {
 	initGLFW();
