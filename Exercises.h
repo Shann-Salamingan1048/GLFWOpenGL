@@ -26,4 +26,8 @@ public:
 
 	void shaderUniforms3_1(); // update uniform color in fragment shader
 	void shaderInterpolation3_2(); // Interpolation
+	void shaderExercise3_3(); // adjust the vertex shader so that the triangle is upside down
+	void shaderExercise3_4(); // move the triangle at the right side of the screen
+	void shaderExercise3_5(); // set the color of the triangle equal to the position of the vertex
+
 };

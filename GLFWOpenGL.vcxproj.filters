@@ -73,5 +73,11 @@
     <None Include="Fragments\Yellow.frag" />
     <None Include="GLSL\exercise3_2.frag" />
     <None Include="GLSL\exercise3_2.vert" />
+    <None Include="GLSL\exercise3_3.vert" />
+    <None Include="GLSL\exercise3_3.frag" />
+    <None Include="GLSL\exercise3_4.vert" />
+    <None Include="GLSL\exercise3_4.frag" />
+    <None Include="GLSL\exercise3_5.frag" />
+    <None Include="GLSL\exercise3_5.vert" />
   </ItemGroup>
 </Project>

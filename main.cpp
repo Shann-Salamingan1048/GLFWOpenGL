@@ -16,6 +16,9 @@ int main()
 	//ex.helloTriangle2_4();
 	//ex.helloTriangle2_5();
 	//ex.shaderUniforms3_1();
-	ex.shaderInterpolation3_2();
+	//ex.shaderInterpolation3_2();
+	//ex.shaderExercise3_3();
+	//ex.shaderExercise3_4();
+	ex.shaderExercise3_5();
 	return EXIT_SUCCESS;
 }

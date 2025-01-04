@@ -27,6 +27,235 @@ void Exercises::processInput(GLFWwindow* window)
 	else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 }
+void Exercises::shaderExercise3_5()
+{
+	initGLFW();
+	// Create a GLFWwindow object that we can use for GLFW's functions
+	window = glfwCreateWindow(WIDTH, HEIGHT, "Open Glfw and Glad", nullptr, nullptr);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create GLFW window\n";
+		glfwTerminate();
+		return;
+	}
+	// Make the context of our window the current active context
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1); // Synchronizes the Frame Rate with the Monitor's Refresh Rate:
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cerr << "Failed to initialize GLAD\n";
+		glfwTerminate();
+		return;
+	}
+	// Define the viewport dimensions
+	glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Shader 
+	Shader shaderProgram("GLSL/exercise3_5.vert", "GLSL/exercise3_5.frag");
+
+	GLfloat vertices[] =
+	{							/// colors
+		 // positions         // colors
+		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bottom right
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // bottom left
+		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // top 
+	};
+	// Create and bind Vertex Array Object (VAO)
+	VAO vao1;
+	vao1.Bind();
+
+	// Create and bind Vertex Buffer Object (VBO)
+	VBO vbo1(vertices, sizeof(vertices));
+	vao1.LinkAttrib(vbo1, 0, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)0);
+	vao1.LinkAttrib(vbo1, 1, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+	// Unbind All Buffers
+	vao1.Unbind();
+	vbo1.Unbind();
+
+	// Render loop
+	while (!glfwWindowShouldClose(window))
+	{
+		// Process input
+		processInput(window);
+
+		// Clear the screen
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// activate the shader
+		shaderProgram.Activate();
+		vao1.Bind();
+		// Draw the triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		// Swap buffers and poll events
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	vao1.Delete();
+	vbo1.Delete();
+	shaderProgram.Delete();
+	glfwTerminate();
+}
+void Exercises::shaderExercise3_4()
+{
+	initGLFW();
+	// Create a GLFWwindow object that we can use for GLFW's functions
+	window = glfwCreateWindow(WIDTH, HEIGHT, "Open Glfw and Glad", nullptr, nullptr);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create GLFW window\n";
+		glfwTerminate();
+		return;
+	}
+	// Make the context of our window the current active context
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1); // Synchronizes the Frame Rate with the Monitor's Refresh Rate:
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cerr << "Failed to initialize GLAD\n";
+		glfwTerminate();
+		return;
+	}
+	// Define the viewport dimensions
+	glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Shader 
+	Shader shaderProgram("GLSL/exercise3_4.vert", "GLSL/exercise3_4.frag");
+
+	GLfloat vertices[] =
+	{							/// colors
+		// first triangle
+		-0.9f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, // left 
+		-0.0f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		-0.45f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f,// top 
+		// second triangle
+		 0.0f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,// left
+		 0.9f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		 0.45f, 0.5f, 0.0f,   0.0f, 0.0f, 1.0f// top 
+	};
+	// Create and bind Vertex Array Object (VAO)
+	VAO vao1;
+	vao1.Bind();
+
+	// Create and bind Vertex Buffer Object (VBO)
+	VBO vbo1(vertices, sizeof(vertices));
+	vao1.LinkAttrib(vbo1, 0, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)0);
+	vao1.LinkAttrib(vbo1, 1, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+	// Unbind All Buffers
+	vao1.Unbind();
+	vbo1.Unbind();
+	
+	// Render loop
+	while (!glfwWindowShouldClose(window))
+	{
+		// Process input
+		processInput(window);
+
+		// Clear the screen
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// activate the shader
+		shaderProgram.Activate();
+		float offset = 1.0f;
+		shaderProgram.setFloat("xOffset", offset); // set the value of the uniform xOffset to 0.5f. This will move the triangle to the right side of the screen.
+		// set the value of the uniform named "xOffset" in the vertex shader to 0.5f. This will move the triangle to the right side of the screen.
+
+		vao1.Bind();
+		// Draw the triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		// Swap buffers and poll events
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	vao1.Delete();
+	vbo1.Delete();
+	shaderProgram.Delete();
+	glfwTerminate();
+}
+void Exercises::shaderExercise3_3()
+{
+	initGLFW();
+	// Create a GLFWwindow object that we can use for GLFW's functions
+	window = glfwCreateWindow(WIDTH, HEIGHT, "Open Glfw and Glad", nullptr, nullptr);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create GLFW window\n";
+		glfwTerminate();
+		return;
+	}
+	// Make the context of our window the current active context
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1); // Synchronizes the Frame Rate with the Monitor's Refresh Rate:
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cerr << "Failed to initialize GLAD\n";
+		glfwTerminate();
+		return;
+	}
+	// Define the viewport dimensions
+	glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Shader 
+	Shader shaderProgram("GLSL/exercise3_3.vert", "GLSL/exercise3_3.frag");
+
+	GLfloat vertices[] =
+	{							/// colors
+		// first triangle
+		-0.9f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, // left 
+		-0.0f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		-0.45f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f,// top 
+		// second triangle
+		 0.0f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,// left
+		 0.9f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,// right
+		 0.45f, 0.5f, 0.0f,   0.0f, 0.0f, 1.0f// top 
+	};
+	// Create and bind Vertex Array Object (VAO)
+	VAO vao1;
+	vao1.Bind();
+
+	// Create and bind Vertex Buffer Object (VBO)
+	VBO vbo1(vertices, sizeof(vertices));
+	vao1.LinkAttrib(vbo1, 0, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)0); 
+	vao1.LinkAttrib(vbo1, 1, 3, GL_FLOAT, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat))); 
+	// Unbind All Buffers
+	vao1.Unbind();
+	vbo1.Unbind();
+
+	// Render loop
+	while (!glfwWindowShouldClose(window))
+	{
+		// Process input
+		processInput(window);
+
+		// Clear the screen
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// activate the shader
+		shaderProgram.Activate();
+		vao1.Bind();
+		// Draw the triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		// Swap buffers and poll events
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	vao1.Delete();
+	vbo1.Delete();
+	shaderProgram.Delete();
+	glfwTerminate();
+
+}
 void Exercises::shaderInterpolation3_2()
 {
 	initGLFW();
