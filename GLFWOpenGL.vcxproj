@@ -146,8 +146,10 @@
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="Exercises.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Exercises2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shaderClass.cpp" />
+    <ClCompile Include="stb.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
   </ItemGroup>
@@ -158,6 +160,7 @@
     <ClInclude Include="dependencies\include\KHR\khrplatform.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Exercises.h" />
+    <ClInclude Include="Exercises2.h" />
     <ClInclude Include="shaderClass.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
@@ -175,6 +178,12 @@
     <None Include="GLSL\exercise3_4.vert" />
     <None Include="GLSL\exercise3_5.frag" />
     <None Include="GLSL\exercise3_5.vert" />
+    <None Include="GLSL\exercise4_1.frag" />
+    <None Include="GLSL\exercise4_1.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\kitten.jfif" />
+    <Image Include="Resources\Textures\Kittens.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

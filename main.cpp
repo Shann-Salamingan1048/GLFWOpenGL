@@ -8,7 +8,7 @@
 #include "VBO.h"
 #include "EBO.h"
 #include "Exercises.h"
-
+#include "Exercises2.h"
 int main()
 {
 	Exercises ex;
@@ -19,6 +19,9 @@ int main()
 	//ex.shaderInterpolation3_2();
 	//ex.shaderExercise3_3();
 	//ex.shaderExercise3_4();
-	ex.shaderExercise3_5();
+	//ex.shaderExercise3_5();
+
+	Exercises2 ex2;
+	ex2.TextureExercise4_1();
 	return EXIT_SUCCESS;
 }

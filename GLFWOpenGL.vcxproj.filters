@@ -36,6 +36,12 @@
     <ClCompile Include="Exercises.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Exercises2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\include\glad\glad.h">
@@ -65,6 +71,9 @@
     <ClInclude Include="Exercises.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Exercises2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert" />
@@ -79,5 +88,13 @@
     <None Include="GLSL\exercise3_4.frag" />
     <None Include="GLSL\exercise3_5.frag" />
     <None Include="GLSL\exercise3_5.vert" />
+    <None Include="GLSL\exercise4_1.vert" />
+    <None Include="GLSL\exercise4_1.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\Kittens.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\kitten.jfif" />
   </ItemGroup>
 </Project>
