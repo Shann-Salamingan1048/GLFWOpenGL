@@ -14,7 +14,7 @@ class Exercises
 public:
 	~Exercises() = default;
 private:
-	const GLint WIDTH = 800, HEIGHT = 600;
+	const GLuint WIDTH = 800, HEIGHT = 600;
 	GLFWwindow* window;
 	void initGLFW();
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);

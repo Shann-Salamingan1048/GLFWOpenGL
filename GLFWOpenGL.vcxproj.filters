@@ -74,6 +74,9 @@
     <ClInclude Include="Exercises2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dependencies\include\stb\stb_images.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert" />
@@ -90,11 +93,23 @@
     <None Include="GLSL\exercise3_5.vert" />
     <None Include="GLSL\exercise4_1.vert" />
     <None Include="GLSL\exercise4_1.frag" />
+    <None Include="GLSL\exercise4_2.frag" />
+    <None Include="GLSL\exercise4_2.vert" />
+    <None Include="GLSL\exercise4_4.frag" />
+    <None Include="GLSL\exercise4_4.vert" />
+    <None Include="GLSL\exercise4_6.frag" />
+    <None Include="GLSL\exercise4_6.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Kittens.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\kitten.jfif" />
+    <Image Include="Resources\Textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\awesomeface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -22,6 +22,11 @@ int main()
 	//ex.shaderExercise3_5();
 
 	Exercises2 ex2;
-	ex2.TextureExercise4_1();
+	//ex2.TextureExercise4_1();
+	//ex2.TextureExercise4_2();
+	//ex2.TextureExercise4_4();
+	//ex2.TextureExercise4_5();
+	ex2.TextureExercise4_6();
+	
 	return EXIT_SUCCESS;
 }

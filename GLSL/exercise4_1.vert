@@ -10,5 +10,6 @@ void main()
 {
 	gl_Position = vec4(aPos, 1.0);// see how we directly give a vec3 to vec4's constructor
 	ourColor = aColor; // set ourColor to the input color we got from the vertex data
-	TexCoord = aTexCoord; // pass the texture
+	//TexCoord = aTexCoord; // pass the texture
+	TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }
