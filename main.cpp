@@ -1,14 +1,7 @@
-#include <iostream>
-// GLAD
-#include <glad/glad.h>
-// GLFW
-#include <GLFW/glfw3.h>
-#include "shaderClass.h"
-#include "VAO.h"
-#include "VBO.h"
-#include "EBO.h"
+
 #include "Exercises.h"
 #include "Exercises2.h"
+#include "Transformations.h"
 int main()
 {
 	Exercises ex;
@@ -26,7 +19,12 @@ int main()
 	//ex2.TextureExercise4_2();
 	//ex2.TextureExercise4_4();
 	//ex2.TextureExercise4_5();
-	ex2.TextureExercise4_6();
+	//ex2.TextureExercise4_6();
 	
+	Transformations t;
+	//t.Exercise5_1();
+	//t.Exercise5_2ex1();
+	t.Exercise5_2ex2();
+
 	return EXIT_SUCCESS;
 }

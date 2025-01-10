@@ -150,6 +150,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shaderClass.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Transformations.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
   </ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="Exercises.h" />
     <ClInclude Include="Exercises2.h" />
     <ClInclude Include="shaderClass.h" />
+    <ClInclude Include="Transformations.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
   </ItemGroup>
@@ -187,6 +189,8 @@
     <None Include="GLSL\exercise4_4.vert" />
     <None Include="GLSL\exercise4_6.frag" />
     <None Include="GLSL\exercise4_6.vert" />
+    <None Include="GLSL\exercise5_1.frag" />
+    <None Include="GLSL\exercise5_1.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png" />

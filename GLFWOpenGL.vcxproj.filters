@@ -42,6 +42,9 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\include\glad\glad.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="dependencies\include\stb\stb_images.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Transformations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert" />
@@ -99,6 +105,8 @@
     <None Include="GLSL\exercise4_4.vert" />
     <None Include="GLSL\exercise4_6.frag" />
     <None Include="GLSL\exercise4_6.vert" />
+    <None Include="GLSL\exercise5_1.vert" />
+    <None Include="GLSL\exercise5_1.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Kittens.jpg">
